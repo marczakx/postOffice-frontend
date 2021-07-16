@@ -1,0 +1,10 @@
+<form [formGroup]="requestForm" (ngSubmit)="onSubmit()">
+  <label for="id">identyfikator</label>
+  <input type="number" name="id" id="id" [formControl]="id">
+  <br>
+  <button type="submit">dalej</button>
+</form> 
+
+
+<input type="text" size=30 name="resultTime" id="resultTime" [formControl]="resultTime">
+<input type="text" size=30 name="resultNumber" id="resultNumber" [formControl]="resultNumber">

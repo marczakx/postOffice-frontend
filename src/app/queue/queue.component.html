@@ -1,0 +1,19 @@
+<div class="card quene">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Identyfikator</th>
+          <th scope="col">Pseudonim</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let queueItem of queue">
+          <td>{{ queueItem.request.id }}</td>
+          <td>{{ queueItem.request.pseudonym }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

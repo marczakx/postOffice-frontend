@@ -1,0 +1,19 @@
+<form [formGroup]="requestForm" (ngSubmit)="onSubmit()">
+  <label for="pseudonym">pseudonim</label>
+  <input type="text" name="pseudonym" id="pseudonym" [formControl]="pseudonym">
+  <br>
+    
+  <input type="checkbox" formControlName="vip" id="vip" [formControl]="vip">
+  <label for="vip">vip</label>
+  <br>
+  <input type="checkbox" formControlName="sudden" id="sudden" [formControl]="sudden">
+  <label for="sudden">nagły przypadek</label>
+  <br>
+  <label for="password">hasło</label>
+  <input type="password" name="password" id="password" [formControl]="password">
+  <br>
+
+  <button type="submit">dalej</button>
+</form> 
+
+<input type="text" name="result" id="result" [formControl]="result">
