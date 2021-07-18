@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RequestService } from '../request.service';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Request } from '../request';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 
 @Component({
@@ -11,14 +10,13 @@ import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
   styleUrls: ['./request-form.component.css']
 })
 export class RequestFormComponent implements OnInit {
- 
+
   private request: Request;
 
-  pseudonym = new FormControl('');
-  password = new FormControl('');
+  pseudonym = new FormControl('', [Validators.minLength(3), Validators.maxLength(10)]);
+  password = new FormControl({value:"", disabled: true});
   vip = new FormControl('');
   sudden = new FormControl('');
-
   result = new FormControl('');
 
   requestForm: FormGroup = this.builder.group({
@@ -28,24 +26,44 @@ export class RequestFormComponent implements OnInit {
     sudden: this.sudden
   });
 
-
-  constructor(private requestService: RequestService, private router: Router,private builder: FormBuilder) {
+  constructor(private requestService: RequestService, private builder: FormBuilder) {
   }
   onSubmit(){
     this.result.setValue("");
     if(!this.vip.value && !this.sudden.value){
     this.requestService.send(this.pseudonym.value).subscribe(data => {
-            this.result.setValue("twój numer "+data.id);
+            this.setResult(data.id);
     });}
     if(this.sudden.value){
     this.requestService.sendAuthorization(this.pseudonym.value,this.password.value,'sudden').subscribe(data => {
-            this.result.setValue("twój numer "+data.id);
+            this.setResult(data.id);
     });}
     if(this.vip.value){
     this.requestService.sendAuthorization(this.pseudonym.value,this.password.value,'vip').subscribe(data => {
-            this.result.setValue("twój numer "+data.id);
+            this.setResult(data.id);
     });}
   };
+  checkIfPasswordIsRequired(){
+    if(this.vip.value || this.sudden.value){
+      this.password.enable();
+    }else{this.password.disable();}
+
+  };
+  suddenOnClik(){
+    this.checkIfPasswordIsRequired();
+    if(!this.sudden.value){
+      this.vip.enable();
+    }else{this.vip.disable();}
+  };
+  vipOnClik(){
+    this.checkIfPasswordIsRequired();
+    if(!this.vip.value){
+      this.sudden.enable();
+    }else{this.sudden.disable();}
+  };
+  setResult(id:  string){
+      this.result.setValue("Twój identyfikator " + id);
+  }
   ngOnInit(): void {
   }
 
