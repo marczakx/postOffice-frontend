@@ -1,26 +1,18 @@
 <div class="row">
   <div class="col"><form [formGroup]="requestForm" (ngSubmit)="onSubmit()">
+
     <div class="form-group row"> <label for="id" class="col-sm-2
-    col-form-label">Id</label><div class="col-sm-7"> <input
-    class="form-control" type="number" id="id"
-    [formControl]="id"> </div></div>
+    col-form-label">Id</label><div class="col-sm-7"> <input class="form-control"
+    type="number" id="id" [formControl]="id"> </div></div>
 
     <br><div class="form-group row"> <div class="col-sm-7"> <button type="submit"
     class="btn btn-dark">Dalej</button> </div> </div>
+
   </form></div>
 
   <div class="col">
 
-    <div class="form-group row"><label class="col-sm-2 col-form-label">Czas
-    oczekiwania</label><div class="col-sm-7"><input class="form-control"
-    type="text" [formControl]="resultTime" readonly> </div></div>
+    <app-result></app-result>
 
-    <div class="form-group row"><label class="col-sm-2 col-form-label">Liczba
-    osób w kolejce przed użytkownikiem</label><div class="col-sm-7"><input
-    class="form-control" type="text" [formControl]="resultNumber" readonly>
-    </div></div>
-
-    <br>
-    <app-queue></app-queue>
   </div>
 </div>

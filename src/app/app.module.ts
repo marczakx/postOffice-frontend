@@ -11,6 +11,7 @@ import { RequestService } from './request.service';
 import { RequestFormComponent } from './request-form/request-form.component';
 import { FindByIdFormComponent } from './find-by-id-form/find-by-id-form.component';
 import { FindByPseudonymFormComponent } from './find-by-pseudonym-form/find-by-pseudonym-form.component';
+import { ResultComponent } from './result/result.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FindByPseudonymFormComponent } from './find-by-pseudonym-form/find-by-p
     QueueComponent,
     RequestFormComponent,
     FindByIdFormComponent,
-    FindByPseudonymFormComponent
+    FindByPseudonymFormComponent,
+    ResultComponent
   ],
   imports: [
   BrowserModule,
