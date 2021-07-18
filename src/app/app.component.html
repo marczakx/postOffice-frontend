@@ -1,27 +1,8 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="card bg-dark my-5">
-        <div class="card-body">
-          <h2 class="card-title text-center text-white py-3">Poczta tradycyjna</h2>
-          <ul class="text-center list-inline py-3">
-            <li class="list-inline-item">
-              <a routerLink="/queue" class="btn btn-info">Kolejka</a>
-                </li>
-            <li class="list-inline-item">
-              <a routerLink="/request" class="btn btn-info">Formularz</a>
-                </li>
-            <li class="list-inline-item">
-              <a routerLink="/findById" class="btn btn-info">Sprawdź identyfikator</a>
-                </li>
-            <li class="list-inline-item">
-              <a routerLink="/findByPseudonym" class="btn btn-info">Sprawdź pseudonim</a>
-                </li>
-          </ul>
-        </div>
-      </div>
-      <router-outlet></router-outlet>
-    </div>
-  </div>
-</div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="queue">Kolejka</a>
+  <a class="navbar-brand" href="request">Formularz</a>
+  <a class="navbar-brand" href="findById">Sprawdź id</a>
+  <a class="navbar-brand" href="findByPseudonym">Sprawdź pseudonim</a>
+</nav>
 
+<router-outlet></router-outlet>
