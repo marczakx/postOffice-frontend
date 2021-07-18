@@ -23,11 +23,11 @@ export class FindByIdFormComponent implements OnInit {
   onSubmit(){
     this.subscription = this.everySecond.subscribe((seconds) =>{
     this.queueService.getTime(this.id.value).subscribe(data => {
-            this.resultTime.setValue("Czas oczekiwania " +data);
+            this.resultTime.setValue(data);
         });
 
     this.queueService.getNumber(this.id.value).subscribe(data => {
-            this.resultNumber.setValue("Liczba osób w kolejce przed użytkownikiem " +data);
+            this.resultNumber.setValue(data);
         });
      });
   }
