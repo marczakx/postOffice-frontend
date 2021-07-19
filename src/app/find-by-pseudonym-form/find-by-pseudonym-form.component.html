@@ -1,9 +1,18 @@
-<form [formGroup]="requestForm" (ngSubmit)="onSubmit()">
-  <label for="pseudonym">pseudonim</label>
-  <input type="text" name="pseudonym" id="pseudonym" [formControl]="pseudonym">
-  <br>
-  <button type="submit">dalej</button>
-</form> 
+<div class="row">
+  <div class="col"><form [formGroup]="requestForm" (ngSubmit)="onSubmit()">
 
-<input type="text" size=30 name="resultTime" id="resultTime" [formControl]="resultTime">
-<input type="text" size=30 name="resultNumber" id="resultNumber" [formControl]="resultNumber">
+    <div class="form-group row"> <label for="pseudonym" class="col-sm-2
+    col-form-label">Pseudonim</label><div class="col-sm-7"> <input class="form-control"
+    type="text" id="pseudonym" [formControl]="pseudonym"> </div></div>
+
+    <br><div class="form-group row"> <div class="col-sm-7"> <button type="submit"
+    class="btn btn-dark">Dalej</button> </div> </div>
+
+  </form></div>
+
+  <div class="col">
+
+    <app-result></app-result>
+
+  </div>
+</div>
