@@ -1,51 +1,40 @@
 
-<div class="container">
-<form [formGroup]="requestForm" (ngSubmit)="onSubmit()">
+<div class="row">
+  <div class="col"><br><form [formGroup]="requestForm" (ngSubmit)="onSubmit()">
 
-  <div class="form-group row"> <label for="pseudonym" class="col-sm-2 col-form-label">Pseudonim</label>
+    <div class="form-group row"> <label for="pseudonym" class="col-sm-2
+    col-form-label">Pseudonim</label><div class="col-sm-7"> <input
+    class="form-control" type="text" id="pseudonym" [formControl]="pseudonym">
+    </div><div class="col-sm-3" *ngIf="pseudonym.hasError('minlength')"> <small
+    class="text-danger"> Minimum 3 </small></div><div class="col-sm-3"
+    *ngIf="pseudonym.hasError('maxlength')"> <small class="text-danger"> Maximum
+    10 </small></div> </div>
 
+    <div class="form-check"> <input type="checkbox" class="form-check-input"
+    id="vip" [formControl]="vip" (change)="vipOnClik()"> <label
+    class="form-check-label" for="vip">VIP</label> </div>
 
-    <div class="col-sm-7"> <input class="form-control" type="text"
-    id="pseudonym" [formControl]="pseudonym"> </div>
+    <div class="form-check"> <input type="checkbox" class="form-check-input"
+    id="sudden" [formControl]="sudden"(change)="suddenOnClik()"> <label
+    class="form-check-label" for="sudden">Nagły przypadek</label> </div>
 
+    <div class="form-group row"> <label for="password" class="col-sm-2
+    col-form-label">Hasło</label> <div class="col-sm-7"> <input
+    class="form-control" type="password" id="password" placeholder="hasło"
+    [formControl]="password"> </div></div>
 
-<div class="col-sm-3" *ngIf="pseudonym.hasError('minlength')"> <small
-class="text-danger"> Minimum 3 </small></div>
+    <br><div class="form-group row"> <div class="col-sm-7"> <button type="submit"
+    class="btn btn-dark">Dalej</button> </div> </div>
 
-<div class="col-sm-3" *ngIf="pseudonym.hasError('maxlength')"> <small
-class="text-danger"> Maximum 10 </small></div>
- </div>
+  </form></div>
 
-  <div class="form-check"> <input type="checkbox"
-  class="form-check-input" id="vip" [formControl]="vip" (change)="vipOnClik()"> <label
-  class="form-check-label" for="vip">VIP</label> </div>
+  <div class="col">
 
-  <div class="form-check"> <input type="checkbox"
-  class="form-check-input" id="sudden" [formControl]="sudden"
+    <br><div class="form-group row"><label>Identyfikator</label><div
+    class="col-sm-7"><input class="form-control" type="text"
+    [formControl]="result" readonly> </div></div>
 
+    <app-result></app-result>
 
-         (change)="suddenOnClik()"
->
-  <label class="form-check-label" for="sudden">Nagły przypadek</label> </div>
-
-  <div class="form-group row"> <label for="password" class="col-sm-2 col-form-label">Hasło</label>
-
-<div class="col-sm-7">
-    <input
-  class="form-control" type="password" id="password" placeholder="hasło"
-  [formControl]="password"> </div></div>
-
-<br>
-  <div class="form-group row">
-    <div class="col-sm-7">
-      <button type="submit" class="btn btn-primary mb-2">Dalej</button>
-    </div>
   </div>
-</form></div>
-
-<br>
-
-  <div class="container"><div class="col-sm-7">
-<input class="form-control" type="text" [formControl]="result"
- readonly><br>
-</div></div>
+</div>

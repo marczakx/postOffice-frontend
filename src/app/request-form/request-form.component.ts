@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RequestService } from '../request.service';
 import { Request } from '../request';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-
+import { SharedService } from './../shared.service';
 
 @Component({
   selector: 'app-request-form',
@@ -13,7 +13,8 @@ export class RequestFormComponent implements OnInit {
 
   private request: Request;
 
-  pseudonym = new FormControl('', [Validators.minLength(3), Validators.maxLength(10)]);
+  pseudonym = new FormControl('', [Validators.minLength(3),
+    Validators.maxLength(10)]);
   password = new FormControl({value:"", disabled: true});
   vip = new FormControl('');
   sudden = new FormControl('');
@@ -26,7 +27,8 @@ export class RequestFormComponent implements OnInit {
     sudden: this.sudden
   });
 
-  constructor(private requestService: RequestService, private builder: FormBuilder) {
+  constructor(private requestService: RequestService,
+    private builder: FormBuilder, private sharedService:SharedService) {
   }
   onSubmit(){
     this.result.setValue("");
@@ -35,19 +37,22 @@ export class RequestFormComponent implements OnInit {
             this.setResult(data.id);
     });}
     if(this.sudden.value){
-    this.requestService.sendAuthorization(this.pseudonym.value,this.password.value,'sudden').subscribe(data => {
-            this.setResult(data.id);
+    this.requestService.sendAuthorization(this.pseudonym.value,
+      this.password.value,'sudden').subscribe(data => {
+        this.setResult(data.id);
     });}
     if(this.vip.value){
-    this.requestService.sendAuthorization(this.pseudonym.value,this.password.value,'vip').subscribe(data => {
-            this.setResult(data.id);
+    this.requestService.sendAuthorization(this.pseudonym.value,
+      this.password.value,'vip').subscribe(data=> {
+        this.setResult(data.id);
     });}
   };
   checkIfPasswordIsRequired(){
     if(this.vip.value || this.sudden.value){
       this.password.enable();
-    }else{this.password.disable();}
-
+    }else{
+      this.password.disable();
+    }
   };
   suddenOnClik(){
     this.checkIfPasswordIsRequired();
@@ -62,7 +67,8 @@ export class RequestFormComponent implements OnInit {
     }else{this.sudden.disable();}
   };
   setResult(id:  string){
-      this.result.setValue("Twój identyfikator " + id);
+      this.result.setValue(id);
+      this.sharedService.setId(id);
   }
   ngOnInit(): void {
   }
